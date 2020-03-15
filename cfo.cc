@@ -9,7 +9,6 @@ Copyright 2020 Ahmet Inan <inan@aicodix.de>
 #include "complex.hh"
 #include "hilbert.hh"
 #include "phasor.hh"
-#include "const.hh"
 #include "wav.hh"
 
 int main(int argc, char **argv)
@@ -38,7 +37,7 @@ int main(int argc, char **argv)
 	bool real = inp_file.channels() == 1;
 
 	DSP::Phasor<cmplx> phasor;
-	phasor.omega(cfo * DSP::Const<value>::TwoPi() / inp_file.rate());
+	phasor.freq(cfo / inp_file.rate());
 
 	DSP::Hilbert<cmplx, 513> hilbert;
 
