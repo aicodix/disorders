@@ -13,7 +13,7 @@ Copyright 2020 Ahmet Inan <inan@aicodix.de>
 int main(int argc, char **argv)
 {
 	if (argc != 4) {
-		std::cerr << "usage: " << argv[0] << " OUTPUT INPUT SFO" << std::endl;
+		std::cerr << "usage: " << argv[0] << " OUTPUT INPUT PPM" << std::endl;
 		return 1;
 	}
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 
 	const char *out_name = argv[1];
 	const char *inp_name = argv[2];
-	value sfo = std::atof(argv[3]);
+	value ppm = std::atof(argv[3]);
 
 	DSP::ReadWAV<value> inp_file(inp_name);
 
@@ -34,6 +34,8 @@ int main(int argc, char **argv)
 	DSP::WriteWAV<value> out_file(out_name, inp_file.rate(), inp_file.bits(), inp_file.channels());
 
 	DSP::Resampler2<value, cmplx, 129, 3> resample(inp_file.rate(), (inp_file.rate() * 19) / 40, 2);
+
+	value sfo = (inp_file.rate() * ppm) / value(1000000);
 
 	while (out_file.good() && inp_file.good()) {
 		cmplx input;

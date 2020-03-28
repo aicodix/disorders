@@ -14,9 +14,9 @@ Add an CFO of 23.5 Hz:
 
 Simulating a Sampling frequency offset by [Resampling](https://en.wikipedia.org/wiki/Sample-rate_conversion) the sampled data.
 
-Add an SFO of -0.15 Hz:
+Add an SFO of -15 ppm:
 ```
-./sfo output.wav input.wav -0.15
+./sfo output.wav input.wav -15
 ```
 
 ### [awgn.cc](awgn.cc)
