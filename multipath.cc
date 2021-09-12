@@ -26,7 +26,11 @@ int main(int argc, char **argv)
 	typedef DSP::Complex<value> cmplx;
 
 	const char *out_name = argv[1];
+	if (out_name[0] == '-' && out_name[1] == 0)
+		out_name = "/dev/stdout";
 	const char *inp_name = argv[2];
+	if (inp_name[0] == '-' && inp_name[1] == 0)
+		inp_name = "/dev/stdin";
 	const char *table_name = argv[3];
 	value factor = DSP::idecibel(std::atof(argv[4]));
 
