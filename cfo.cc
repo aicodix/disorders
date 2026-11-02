@@ -48,6 +48,8 @@ int main(int argc, char **argv)
 	while (out_file.good() && inp_file.good()) {
 		cmplx tmp;
 		inp_file.read(reinterpret_cast<value *>(&tmp), 1);
+		if (!inp_file.good())
+			break;
 		if (real)
 			tmp = hilbert(tmp.real());
 		tmp *= phasor();

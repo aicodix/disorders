@@ -58,10 +58,8 @@ these tools between encoder and decoder.
   therefore depends on the input level, and the noise is white across the whole
   sample rate, so the in-band SNR of a narrowband signal is much higher than the
   wideband SNR.
-- Each loop checks `good()` before reading, but a stream only turns bad after a
-  read fails at the end of the file. So every tool writes one extra frame made
-  from a failed read, NaN for 32-bit float input, unless the Hilbert delay of a
-  real input still holds it back. The fix belongs in `DSP::ReadWAV`.
+- `good()` only turns false after a read has failed at the end of the input,
+  so each loop checks it again after reading, before using the sample.
 
 ## Code style
 

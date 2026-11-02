@@ -44,6 +44,8 @@ int main(int argc, char **argv)
 	while (out_file.good() && inp_file.good()) {
 		cmplx input;
 		inp_file.read(reinterpret_cast<value *>(&input), 1);
+		if (!inp_file.good())
+			break;
 		cmplx output[2];
 		out_file.write(reinterpret_cast<value *>(output), resample(output, input, sfo), 2);
 	}
