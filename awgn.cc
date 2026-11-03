@@ -13,8 +13,8 @@ Copyright 2020 Ahmet Inan <inan@aicodix.de>
 
 int main(int argc, char **argv)
 {
-	if (argc != 4) {
-		std::cerr << "usage: " << argv[0] << " OUTPUT INPUT AWGN" << std::endl;
+	if (argc != 4 && argc != 5) {
+		std::cerr << "usage: " << argv[0] << " OUTPUT INPUT AWGN [SEED]" << std::endl;
 		return 1;
 	}
 
@@ -41,9 +41,10 @@ int main(int argc, char **argv)
 	value mean = 0;
 	value sigma = std::sqrt(2 * std::pow(10, awgn / 10));
 	std::random_device rd;
+	unsigned seed = argc == 5 ? std::atoi(argv[4]) : rd();
 	typedef std::default_random_engine generator;
 	typedef std::normal_distribution<value> normal;
-	auto noise = std::bind(normal(mean, sigma), generator(rd()));
+	auto noise = std::bind(normal(mean, sigma), generator(seed));
 
 	while (out_file.good() && inp_file.good()) {
 		cmplx tmp;

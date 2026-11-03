@@ -42,7 +42,8 @@ under `-ffast-math`.
 
 There is no test suite. `cfo`, `sfo` and `multipath` are deterministic, so
 check a refactoring by comparing outputs of old and new binaries with `cmp`.
-`awgn` seeds from `std::random_device`, so its output differs on every run.
+`awgn` and `watterson` seed from `std::random_device`, so their output differs
+on every run, unless a seed is given as last argument.
 A full check is the modem's simulation pipeline in its README, which chains
 these tools between encoder and decoder.
 

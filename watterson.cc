@@ -49,7 +49,8 @@ int main(int argc, char **argv)
 	DSP::Hilbert<cmplx, 513> hilbert;
 
 	std::random_device rd;
-	std::default_random_engine generator(argc == 6 ? std::atoi(argv[5]) : rd());
+	unsigned seed = argc == 6 ? std::atoi(argv[5]) : rd();
+	std::default_random_engine generator(seed);
 	// Gaussian Doppler spectrum, frequency spread is two sigma
 	std::normal_distribution<value> doppler(0, spread / 2);
 	std::uniform_real_distribution<value> phase(0, DSP::Const<value>::TwoPi());

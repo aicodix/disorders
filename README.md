@@ -28,6 +28,11 @@ Add -34dB of AWGN:
 ./awgn output.wav input.wav -34
 ```
 
+An optional last argument seeds the random generator, so the same noise can be repeated:
+```
+./awgn output.wav input.wav -34 1234
+```
+
 ### [multipath.cc](multipath.cc)
 
 Simulating [Multipath propagation](https://en.wikipedia.org/wiki/Multipath_propagation) by summing the [Analytic signal](https://en.wikipedia.org/wiki/Analytic_signal) with delayed, attenuated and phase shifted versions of itself.
