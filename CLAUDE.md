@@ -14,6 +14,9 @@ processes it sample by sample and writes a WAV file in the same format:
 - `sfo.cc`: sampling frequency offset in ppm, by resampling with `DSP::Resampler2`.
 - `multipath.cc`: sum of delayed, attenuated and phase shifted copies, read
   from a table, plus a direct path set by a Rician factor in dB.
+- `watterson.cc`: Watterson fading channel as in ITU-R F.1487, two Rayleigh
+  fading paths with Gaussian Doppler spectrum, from sums of `DSP::Phasor`s.
+  An optional seed makes the fading repeatable.
 - `multipath.txt`: example table, one path per row: amplitude, delay in
   milliseconds, phase in radians. Generated with
   [rir](https://github.com/aicodix/rir).

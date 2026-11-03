@@ -43,3 +43,28 @@ The table contains rows of each extra path and its amplitude, time delay in mill
 
 Example table entries generated using [Room Impulse Response](https://github.com/aicodix/rir) tool.
 
+### [watterson.cc](watterson.cc)
+
+Simulating an [Ionospheric](https://en.wikipedia.org/wiki/Ionosphere) [HF](https://en.wikipedia.org/wiki/High_frequency) channel with the Watterson model as in ITU-R F.1487: two independent paths of equal power, the second one delayed, each with [Rayleigh fading](https://en.wikipedia.org/wiki/Rayleigh_fading) and a [Gaussian](https://en.wikipedia.org/wiki/Gaussian_function) [Doppler spread](https://en.wikipedia.org/wiki/Doppler_spread).
+
+If the input is a real signal, the [Discrete Hilbert transform](https://en.wikipedia.org/wiki/Hilbert_transform#Discrete_Hilbert_transform) is used to get the analytic signal and only the real part is used as output after fading.
+
+Use a differential time delay of 1 millisecond and a frequency spread (two sigma) of 0.5 Hz:
+```
+./watterson output.wav input.wav 1 0.5
+```
+
+The mid-latitude conditions from ITU-R F.1487 and the flutter condition from CCIR 520:
+
+| Condition | Delay | Spread |
+| --------- | ----- | ------ |
+| Quiet     | 0.5ms | 0.1Hz  |
+| Moderate  |   1ms | 0.5Hz  |
+| Disturbed |   2ms |   1Hz  |
+| Flutter   | 0.5ms |  10Hz  |
+
+The tap gains are sums of 64 phasors with random phases and Gaussian distributed frequencies.
+An optional last argument seeds the random generator, so the same fading can be repeated:
+```
+./watterson output.wav input.wav 1 0.5 1234
+```

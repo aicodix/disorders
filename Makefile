@@ -5,7 +5,7 @@ CXX = clang++ -stdlib=libc++
 
 .PHONY: all
 
-all: cfo sfo awgn multipath
+all: cfo sfo awgn multipath watterson
 
 cfo: cfo.cc
 	$(CXX) $(CXXFLAGS) $< -o $@
@@ -19,8 +19,11 @@ awgn: awgn.cc
 multipath: multipath.cc
 	$(CXX) $(CXXFLAGS) $< -o $@
 
+watterson: watterson.cc
+	$(CXX) $(CXXFLAGS) $< -o $@
+
 .PHONY: clean
 
 clean:
-	rm -f cfo sfo awgn multipath
+	rm -f cfo sfo awgn multipath watterson
 
