@@ -1,4 +1,7 @@
 
+All tools keep the sample rate, bits and channels of their input.
+Use WAV files with 32 bit float samples for simulations: with 8 or 16 bits, the output is quantized and clipped at full scale.
+
 ### [cfo.cc](cfo.cc)
 
 Simulating a [Carrier frequency offset](https://en.wikipedia.org/wiki/Carrier_frequency_offset) by mixing the [Analytic signal](https://en.wikipedia.org/wiki/Analytic_signal) with an [Numerically controlled oscillator](https://en.wikipedia.org/wiki/Numerically_controlled_oscillator).
